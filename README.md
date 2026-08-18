@@ -66,7 +66,7 @@ bash tools/build-all.sh
 
 ## What is not in this repo
 
-Nintendo dumps, boot screens, original RPX binaries, and Ghidra output stay out of git.
+Nintendo dumps, original RPX binaries, and Ghidra outputs.
 
 
 ## Thanks to
