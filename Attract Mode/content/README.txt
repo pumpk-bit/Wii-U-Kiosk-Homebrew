@@ -10,4 +10,5 @@ Then FTP that folder to:
 
   mlc:/usr/title/00050000/1fa82100/
 
-The kiosk menu launches this title with argv[1] = 0 .. 11 (or AttractMode00 .. AttractMode11).
+Kiosk Menu scans meta/ and rotates through these clips in-menu for attract mode.
+The wrapper accepts argv[1] = 0 .. 11 if the title is launched directly.

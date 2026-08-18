@@ -10,6 +10,7 @@ ROOT="$(CDPATH= cd -- "$(dirname "$0")/.." && pwd)"
 . "$ROOT/tools/env.sh"
 
 missing=""
+PYTHON_CMD=""
 
 have() { command -v "$1" >/dev/null 2>&1; }
 
@@ -18,6 +19,20 @@ check() {
   shift
   for n in "$@"; do
     if have "$n"; then
+      printf '%-22s %s\n' "$label" "$(command -v "$n")"
+      return 0
+    fi
+  done
+  printf '%-22s MISSING\n' "$label"
+  missing="$missing $label"
+}
+
+check_python() {
+  label="$1"
+  shift
+  for n in "$@"; do
+    if have "$n"; then
+      PYTHON_CMD="$n"
       printf '%-22s %s\n' "$label" "$(command -v "$n")"
       return 0
     fi
@@ -46,7 +61,7 @@ check powerpc-eabi-gcc powerpc-eabi-gcc
 check powerpc-eabi-cmake powerpc-eabi-cmake
 check elf2rpl elf2rpl
 check cmake cmake
-check python python3 python
+check_python python python3 python
 check_opt wuhbtool wuhbtool
 
 if [ -n "$missing" ]; then
@@ -62,9 +77,8 @@ if [ -n "$missing" ]; then
   exit 1
 fi
 
-if ! python3 -c 'import sys; raise SystemExit(0 if sys.version_info >= (3, 8) else 1)' 2>/dev/null \
-   && ! python -c 'import sys; raise SystemExit(0 if sys.version_info >= (3, 8) else 1)' 2>/dev/null; then
-  echo "Python 3.8 or newer is required." >&2
+if ! "$PYTHON_CMD" -c 'import sys; raise SystemExit(0 if sys.version_info >= (3, 8) else 1)'; then
+  echo "Python 3.8 or newer is required (found $($PYTHON_CMD --version 2>&1))." >&2
   exit 1
 fi
 

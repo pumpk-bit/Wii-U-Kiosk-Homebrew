@@ -8,4 +8,5 @@ Then FTP that folder to:
 
   mlc:/usr/title/00050000/1fa83300/
 
-The kiosk menu launches this title with argv[1] = 0 (or AboutAmiibo00).
+Kiosk Menu reads this file from meta/ on MLC for in-menu playback. The wrapper
+accepts argv[1] = 0 (or AboutAmiibo00) if the title is launched directly.

@@ -45,6 +45,7 @@ ALL_TITLES=(
   "About Wii U"
   "Attract Mode"
   "About Amiibo"
+  "Exhibition Mode"
 )
 
 if [ "$#" -eq 0 ]; then

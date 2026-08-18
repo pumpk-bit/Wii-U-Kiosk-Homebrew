@@ -7,7 +7,9 @@ Special kiosk helper for the **About Wii U** bubble in Kiosk Menu.
 - **RPX:** `aboutwiiu_wrapper.rpx`
 - **User files:** `meta/AboutWiiU00.mp4` ... `meta/AboutWiiU05.mp4`
 
-This title is basically a small wrapper around video files. Kiosk Menu shows the **About Wii U** button, then launches this title with a slot number to choose which clip to play.
+This title stores the six About Wii U clips on MLC. Kiosk Menu scans `meta/`
+and plays them in-menu; it may also launch this wrapper with a slot index in
+some configurations.
 
 ---
 
@@ -46,7 +48,7 @@ The exact button text lives in Kiosk Menu itself. This title just needs the matc
     AboutWiiU05.mp4
 ```
 
-FTP-ready base folder: [`Release/1fa82000/`](../../Release/1fa82000/).
+FTP-ready base folder after build: [`Release/1fa82000/`](../../Release/1fa82000/).
 
 Videos are **not** included in this repo.
 
@@ -125,7 +127,7 @@ See also: [Release/README.md](../../Release/README.md).
 
 | Issue | Check |
 |-------|-------|
-| About Wii U button opens but no video plays | Missing `AboutWiiU0x.mp4` file or wrong filename |
+| About Wii U button opens but no video plays | Missing or misnamed file (e.g. `AboutWiiU03.mp4`) |
 | Black screen during playback | Re-encode the MP4 to kiosk-friendly H.264 + AAC |
 | Only some buttons work | You only added some of the six files |
 | Bubble missing in Kiosk Menu | This title is not installed on MLC |
@@ -133,5 +135,5 @@ See also: [Release/README.md](../../Release/README.md).
 Related:
 
 - [AttractMode.MD](AttractMode.MD)
-- [Aboutamiibo.MD](Aboutamiibo.MD)
+- [AboutAmiibo.MD](AboutAmiibo.MD)
 - [HowKioskMenuWorks.MD](../HowKioskMenuWorks.MD)

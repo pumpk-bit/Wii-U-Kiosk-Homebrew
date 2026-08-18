@@ -173,6 +173,35 @@ Add `AboutAmiibo00.mp4` under `Release/1fa83300/meta/`.
 
 ---
 
+## Exhibition Mode — `1fa82700`
+
+From the repo root, after the toolchain check:
+
+```sh
+cd "Exhibition Mode"
+mkdir -p build && cd build
+powerpc-eabi-cmake ..
+cmake --build .
+```
+
+Add paired `TV00.mp4` / `DRC00.mp4` … under `Release/1fa82700/meta/`. From the
+`Exhibition Mode/` folder (not `build/`):
+
+```sh
+cd ..
+python3 tools/prepare_videos.py --tv ... --drc ... --out ../Release/1fa82700/meta
+```
+
+Or from the repo root:
+
+```sh
+python3 "Exhibition Mode/tools/prepare_videos.py" --tv ... --drc ... --out Release/1fa82700/meta
+```
+
+Enable **Exhibition Mode** in Kiosk Menu maintenance settings after FTP.
+
+---
+
 ## FTP install
 
 See [Release/README.md](../Release/README.md) for per-title file lists and `mlc:/usr/title/00050000/<id>/` paths.

@@ -7,13 +7,14 @@
 # and tells you how to open a build shell.
 
 $ErrorActionPreference = 'Stop'
-. "$PSScriptRoot\env.ps1"
 
 $bash = Get-Command bash -ErrorAction SilentlyContinue
 if ($bash) {
     & $bash.Source "$PSScriptRoot/check-toolchain.sh"
     exit $LASTEXITCODE
 }
+
+. "$PSScriptRoot\env.ps1"
 
 function Test-ToolFile([string]$Label, [string[]]$Paths, [switch]$Optional) {
     $hit = $Paths | Where-Object { $_ -and (Test-Path -LiteralPath $_) } | Select-Object -First 1
@@ -53,6 +54,11 @@ $ok = (Test-ToolFile 'elf2rpl' @(
 $py = Get-Command python3, python, python3.exe, python.exe -ErrorAction SilentlyContinue | Select-Object -First 1
 if ($py) {
     Write-Host ("{0,-22} {1}" -f 'python', $py.Source)
+    & $py.Source -c 'import sys; raise SystemExit(0 if sys.version_info >= (3, 8) else 1)'
+    if ($LASTEXITCODE -ne 0) {
+        $ver = & $py.Source --version 2>&1
+        throw "Python 3.8 or newer is required (found $ver)."
+    }
 } else {
     Write-Host ("{0,-22} MISSING" -f 'python')
     $ok = $false

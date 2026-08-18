@@ -24,7 +24,7 @@ Kiosk Menu reads `Featured.xml` from this title's `meta/` folder.
     meta.xml
 ```
 
-FTP-ready tree: [`Release/1fa82200/`](../../Release/1fa82200/).
+FTP-ready tree after build: [`Release/1fa82200/`](../../Release/1fa82200/).
 
 ---
 
@@ -98,7 +98,7 @@ Per-folder install layout: [Release/README.md](../../Release/README.md).
 | Featured row is empty | `Featured.xml` missing, broken, or all dates are out of range |
 | Title listed but not visible | Wrong `00050002` ID, wrong region, or demo not installed |
 | Wrong order | Duplicate / out-of-order `order` values |
-| No demo | Check the order. Make sure there are no duplicates. |
+| Wrong demo in Featured row | Wrong `00050002` ID in `Featured.xml`, or duplicate / conflicting `order` values |
 | `???` on Wii U Menu | Normal for helper titles |
 
 Related:

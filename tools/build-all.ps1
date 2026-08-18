@@ -19,4 +19,5 @@ See docs/HowToBuild.MD
 }
 
 & $bash.Source "$PSScriptRoot/build-all.sh" @args
-exit $LASTEXITCODE
+if ($null -ne $LASTEXITCODE) { exit $LASTEXITCODE }
+exit 0

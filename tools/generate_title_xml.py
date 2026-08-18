@@ -88,6 +88,16 @@ TITLES: dict[str, dict[str, Any]] = {
         "product_code": "WUP-P-HBAA",
         "sdk_version": "20701",
     },
+    "exhibitionmode": {
+        "dir": "Exhibition Mode",
+        "unique": "1fa82700",
+        "tid": "000500001FA82700",
+        "rpx": "exhibition_wrapper.rpx",
+        "long_name": "Exhibition Mode",
+        "short_name": "Exhibit",
+        "product_code": "WUP-P-HBEM",
+        "sdk_version": "20701",
+    },
 }
 
 DIR_TO_SLUG = {spec["dir"]: slug for slug, spec in TITLES.items()}

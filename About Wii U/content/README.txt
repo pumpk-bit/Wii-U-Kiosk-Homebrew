@@ -10,4 +10,6 @@ Then FTP that folder to:
 
   mlc:/usr/title/00050000/1fa82000/
 
-The kiosk menu launches this title with argv[1] = 0 .. 5 (or AboutWiiU00 .. AboutWiiU05).
+Kiosk Menu reads these files from meta/ on MLC for in-menu playback. The wrapper
+accepts argv[1] = 0 .. 5 (or AboutWiiU00 .. AboutWiiU05) if the title is
+launched directly.

@@ -7,7 +7,9 @@ Special kiosk helper for idle / attract videos when Kiosk Menu is left alone.
 - **RPX:** `attractmode_wrapper.rpx`
 - **User files:** `meta/AttractMode00.mp4` ... `meta/AttractMode11.mp4`
 
-This title is another simple wrapper around MP4 files. Kiosk Menu uses it for the attract-mode playlist and picks clips by number.
+This title stores attract-mode clips on MLC. Kiosk Menu scans `meta/` and
+builds a rotating playlist (`GetNextAttractModeMovie`); it does not launch the
+wrapper RPX for normal attract playback.
 
 ---
 
@@ -64,7 +66,7 @@ More context: [HowKioskMenuWorks.MD — Movies and attract mode](../HowKioskMenu
     AttractMode11.mp4
 ```
 
-FTP-ready base folder: [`Release/1fa82100/`](../../Release/1fa82100/).
+FTP-ready base folder after build: [`Release/1fa82100/`](../../Release/1fa82100/).
 
 Videos are **not** included in this repo.
 
@@ -117,9 +119,9 @@ Install tree details: [Release/README.md](../../Release/README.md).
 
 ## Notes
 
-- This title is only the **movie source wrapper**. The actual attract-mode timing and behavior live in Kiosk Menu.
-- Kiosk Menu can have multiple attract-mode styles and settings, but this title’s job is just to provide the video files.
-- If attract mode looks broken, also check the menu’s own settings and not only these MP4s.
+- This title is only the **movie source** on MLC. Attract-mode timing and playback live in Kiosk Menu.
+- Kiosk Menu can have multiple attract-mode styles and settings, but this title's job is just to provide the video files.
+- If attract mode looks broken, also check the menu's own settings and not only these MP4s.
 - Attract videos are usually without audio. May work with audio.
 
 ---
@@ -129,12 +131,12 @@ Install tree details: [Release/README.md](../../Release/README.md).
 | Issue | Check |
 |-------|-------|
 | Attract mode never starts | Kiosk Menu settings may disable or change attract mode behavior |
-| Attract mode starts but no movie plays | Missing `AttractModeXX.mp4` files |
+| Attract mode starts but no movie plays | Missing or misnamed `AttractModeXX.mp4` files (`XX` = two-digit slot, e.g. `07`) |
 | Some clips work, some do not | Wrong numbering or bad encode on certain files |
 | Black screen | Re-encode with H.264 + AAC |
 
 Related:
 
 - [AboutWiiU.MD](AboutWiiU.MD)
-- [Aboutamiibo.MD](Aboutamiibo.MD)
+- [AboutAmiibo.MD](AboutAmiibo.MD)
 - [HowKioskMenuWorks.MD](../HowKioskMenuWorks.MD)

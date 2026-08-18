@@ -24,7 +24,7 @@ Same idea as Featured List, but with a different file name and XML type.
     meta.xml
 ```
 
-FTP-ready tree: [`Release/1fa82300/`](../../Release/1fa82300/).
+FTP-ready tree after build: [`Release/1fa82300/`](../../Release/1fa82300/).
 
 ---
 
@@ -93,8 +93,11 @@ Per-folder install layout: [Release/README.md](../../Release/README.md).
 
 | Issue | Check |
 |-------|-------|
-| No demo | Check the order. Make sure there are no duplicates. |
-| Demo listed but hidden | Wrong title ID, region mismatch, or title missing on MLC |
+| New row is empty | `NewReleases.xml` missing, broken, or all dates are out of range |
+| Title listed but not visible | Wrong `00050002` ID, wrong region, or demo not installed |
+| Wrong order | Duplicate / out-of-order `order` values |
+| Wrong demo in New row | Wrong `00050002` ID in `NewReleases.xml`, or duplicate / conflicting `order` values |
+| `???` on Wii U Menu | Normal for helper titles |
 
 Related:
 

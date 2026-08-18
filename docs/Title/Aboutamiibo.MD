@@ -7,7 +7,9 @@ Special kiosk helper for the **About amiibo** bubble in Kiosk Menu.
 - **RPX:** `aboutamiibo_wrapper.rpx`
 - **User file:** `meta/AboutAmiibo00.mp4`
 
-Like the other video helper titles, this is mostly a wrapper around one MP4 file.
+This title stores the About amiibo clip on MLC. Kiosk Menu scans `meta/` and
+plays it in-menu; it may also launch this wrapper with argument `0` in some
+configurations.
 
 ---
 
@@ -36,7 +38,7 @@ AboutAmiibo00.mp4
     AboutAmiibo00.mp4
 ```
 
-FTP-ready base folder: [`Release/1fa83300/`](../../Release/1fa83300/).
+FTP-ready base folder after build: [`Release/1fa83300/`](../../Release/1fa83300/).
 
 Video is **not** included in this repo.
 

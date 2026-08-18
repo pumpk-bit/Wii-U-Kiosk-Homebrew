@@ -50,7 +50,8 @@ MenuApp hard-codes several companion title IDs and treats each one specially. Th
 | `000500001FA82300` | New releases list (`meta/NewReleases.xml`) | [NewReleases.MD](Title/NewReleases.MD) |
 | `000500001FA82000` | About Wii U videos | [AboutWiiU.MD](Title/AboutWiiU.MD) |
 | `000500001FA82100` | Attract mode playlist | [AttractMode.MD](Title/AttractMode.MD) |
-| `000500001FA83300` | About Amiibo video | [Aboutamiibo.MD](Title/Aboutamiibo.MD) |
+| `000500001FA83300` | About Amiibo video | [AboutAmiibo.MD](Title/AboutAmiibo.MD) |
+| `000500001FA82700` | Exhibition Mode movies | [ExhibitionMode.MD](Title/ExhibitionMode.MD) |
 | `000500001FA82400` | Active list wrapper (retail only; not in this repo) | — |
 
 Demo tiles themselves live under `mlc/usr/title/00050002/<id>/` and carry `meta/KioskMeta.xml`.
@@ -85,6 +86,9 @@ At runtime the menu reads config from paths like:
 
 - `/vol/content/MenuApp/MenuConfiguration/MessageStudio.xml`
 - `/vol/content/MenuApp/MenuConfiguration/DefaultMenuConfigurationNOA.xml` (and NOE / NCL variants)
+
+On-disk dump paths use lowercase region suffixes (`noa`, `noe`, `ncl`); runtime
+`/vol/content/...` strings often use uppercase (`NOA`, etc.).
 
 Important `meta.xml` flags include `app_launch_type = 00000001`, `launching_flag = 00000004`, `bg_daemon_enable = 1`, and `drc_use = 1`.
 
@@ -201,7 +205,9 @@ Finer genre labels include action, adventure, rpg, puzzle, sports, music, fighti
 
 ### About Wii U layout
 
-Six named video buttons in MessageStudio (`drc_btn_about_wiiu_vid01` … `vid06`), with labels such as:
+On the game-selector screen, **About Wii U** is the bubble on the **right**;
+**About amiibo** is on the **left**. Six named video buttons in MessageStudio
+(`drc_btn_about_wiiu_vid01` … `vid06`), with labels such as:
 
 - What is Wii U?
 - Wii U GamePad
@@ -218,9 +224,9 @@ Runtime strings confirm editable kiosk fields:
 
 - `kioskID`
 - `attractModeMode`
-- `nonInteractiveMode`
+- `nonInteractiveMode` (maintenance UI: **Exhibition Mode**)
 
-Maintenance screens include kiosk ID editing and attract-mode mode selection.
+Maintenance screens include kiosk ID editing, attract-mode mode selection, and Exhibition Mode on/off under **Set Menu Options**.
 
 ---
 
@@ -261,6 +267,10 @@ Runtime log strings include: `Title %016llX rejected for lack of KioskMeta.xml`.
 | `000500001FA82000` | About Wii U movie list |
 | `000500001FA82100` | Attract mode movie list |
 | `000500001FA83300` | About Amiibo movie list |
+
+`000500001FA82700` (Exhibition Mode) is handled separately by
+`MenuScreenNonInteractiveModeClass` — see
+[Exhibition Mode (non-interactive)](#exhibition-mode-non-interactive).
 
 ### KioskMeta.xml — the per-demo product sheet
 
@@ -362,11 +372,17 @@ Attract mode is first-class, not just an idle timeout:
 - Maintenance UI to set attract mode mode
 - Invalid-value fallback: `SetAttractModeMode(): invalid value (%d)--defaulting to ATTRACT_MODE_MODE_NORMAL`
 
-### Non-interactive mode
+### Exhibition Mode (non-interactive)
 
-Separate subsystem: `MenuScreenNonInteractiveModeClass`, `GetNonInteractiveMovieList()`, `ProcessNonInteractiveMovieList()`. May enumerate movies through MCP title list rather than fixed filenames only.
+This is **not** attract mode. When `<nonInteractiveMode>1</nonInteractiveMode>` is set, Kiosk Menu switches to `MenuScreenNonInteractiveModeClass` and plays a dual-screen loop from title **`000500001FA82700`**.
 
-Generic path string also seen: `/meta/KioskMovie.mp4`.
+**Movies:** `meta/TV00.mp4` … `meta/TV99.mp4` on HDMI and `meta/DRC00.mp4` … `meta/DRC99.mp4` on the GamePad. Names must match exactly (8 vs 9 characters). TV and DRC slot counts must be equal. MenuApp scans MCP for the title and reads `/meta/` itself — it does **not** launch the helper RPX for playback.
+
+**Enable:** Kiosk Settings → Set Menu Options → Exhibition Mode.
+
+**Homebrew title:** [ExhibitionMode.MD](Title/ExhibitionMode.MD).
+
+Generic path string also seen elsewhere: `/meta/KioskMovie.mp4` (per-demo trailers, not Exhibition Mode).
 
 ---
 
