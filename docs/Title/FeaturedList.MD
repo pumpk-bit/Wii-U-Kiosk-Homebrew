@@ -72,7 +72,7 @@ Example:
 ## Add or remove demos
 
 1. Make sure the demo is installed under `mlc/usr/title/00050002/`.
-2. Edit `meta/Featured.xml`.
+2. Edit `Release/1fa82200/meta/Featured.xml` (the generator will not overwrite it).
 3. Add or remove `<title ...>` lines.
 4. Upload the changed file or full title.
 5. Reboot or re-open Kiosk Menu.

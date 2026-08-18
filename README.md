@@ -16,29 +16,6 @@ Note: titles may show up as "???" on the Wii U. Do not delete them. No `content/
 
 For reverse-engineering notes on how the retail kiosk menu uses these titles, see [HowKioskMenuWorks.MD](docs/HowKioskMenuWorks.MD).
 
-## How to build
-
-Needs [devkitPro](https://devkitpro.org/) **wiiu-dev**, **CMake**, and **Python 3.8+**. Full first-time install: [HowToBuild.MD](docs/HowToBuild.MD).
-
-Windows (MSYS2 — stock PowerShell cannot compile):
-
-```powershell
-powershell -File tools/launch-msys2-wiiu.ps1
-```
-
-then in that shell:
-
-```sh
-bash tools/check-toolchain.sh
-bash tools/build-all.sh
-```
-
-Linux / macOS:
-
-```sh
-bash tools/check-toolchain.sh
-bash tools/build-all.sh
-```
 
 ## How to install (FTP)
 
@@ -64,9 +41,35 @@ mlc:/usr/title/00050000/1fa82200/meta/  Should contain: Featured.xml  meta.xml
 ```
 
 
+
+## How to build
+
+Needs [devkitPro](https://devkitpro.org/) **wiiu-dev (wut)**, **CMake**, and **Python 3.8+**. Full first-time install: [HowToBuild.MD](docs/HowToBuild.MD).
+
+Windows (MSYS2 — stock PowerShell cannot compile):
+
+```powershell
+powershell -File tools/launch-msys2-wiiu.ps1
+```
+
+then in that shell:
+
+```sh
+bash tools/check-toolchain.sh
+bash tools/build-all.sh
+```
+
+Linux / macOS:
+
+```sh
+bash tools/check-toolchain.sh
+bash tools/build-all.sh
+```
+
+
 ## What is not in this repo
 
-Nintendo dumps, boot screens, original RPX binaries, and Ghidra output stay out of git. Keep those in `SourceCD/` (gitignored). See `SourceCD/README.md`.
+Nintendo dumps, boot screens, original RPX binaries, and Ghidra output stay out of git.
 
 
 ## Thanks to
@@ -75,4 +78,4 @@ Thanks: [Ghidra](https://github.com/NationalSecurityAgency/ghidra/releases), [Gh
 
 ## AI
 
-Cursor AI was used to help in this project. Cursor helped fix spelling and make code for the project.
+Cursor AI was used to help in this project. Cursor helped fix docs and make code for the project.

@@ -1,8 +1,3 @@
-# Private dumps, original titles, Ghidra projects, decompilations.
-# Keep a local SourceCD/README.md; never commit the rest.
-SourceCD/*
-!SourceCD/README.md
-
 # FTP-ready trees (CMake copies the RPX; generate_title_xml.py writes XML).
 Release/*
 !Release/README.md

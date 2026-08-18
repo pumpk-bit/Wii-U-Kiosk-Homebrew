@@ -115,6 +115,8 @@ cmake --build .
 
 ## New Releases — `1fa82300`
 
+From the repo root, after the toolchain check:
+
 ```sh
 cd "New Releases"
 mkdir -p build && cd build
@@ -127,6 +129,8 @@ Output: `Release/1fa82300/` — see [Title/NewReleases.MD](Title/NewReleases.MD)
 ---
 
 ## About Wii U — `1fa82000`
+
+From the repo root, after the toolchain check:
 
 ```sh
 cd "About Wii U"
@@ -141,6 +145,8 @@ Add your own `AboutWiiU00.mp4` … `AboutWiiU05.mp4` under `Release/1fa82000/met
 
 ## Attract Mode — `1fa82100`
 
+From the repo root, after the toolchain check:
+
 ```sh
 cd "Attract Mode"
 mkdir -p build && cd build
@@ -153,6 +159,8 @@ Add `AttractMode00.mp4` … `AttractMode11.mp4` under `Release/1fa82100/meta/`.
 ---
 
 ## About Amiibo — `1fa83300`
+
+From the repo root, after the toolchain check:
 
 ```sh
 cd "About Amiibo"

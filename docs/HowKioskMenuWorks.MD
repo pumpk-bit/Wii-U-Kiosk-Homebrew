@@ -2,7 +2,7 @@
 
 Best-effort reverse engineering of the retail Wii U kiosk menu (`00050010-1FA81000`). This explains what **MenuApp.rpx** does so homebrew helper titles in this repo can match real behavior.
 
-**Sources:** extracted title files, Ghidra decompilation of `MenuApp.rpx` / `mvplayer.rpl` / `SESClient.rpl`, and runtime string hits from an emulator memory dump. Retail binaries stay out of git — see [SourceCD/README.md](../SourceCD/README.md).
+**Sources:** extracted title files, Ghidra decompilation of `MenuApp.rpx` / `mvplayer.rpl` / `SESClient.rpl`, and runtime string hits from an emulator memory dump. All code in this project was remade without copying from the dumps.
 
 **On this page**
 
@@ -554,4 +554,4 @@ Analysis pipeline used for this document:
 4. Cross-check string tables against `MessageStudio.xml` and runtime memory strings
 5. Validate `KioskMeta.xml` / `KioskMovie.mp4` behavior against sampled `00050002` wrapper titles
 
-Tools credited in the [project README](../README.md): Ghidra, GhidraRPXLoader, Cursor AI for structuring notes, helping decomplie and cross-referencing findings.
+Tools credited in the [project README](../README.md): Ghidra, GhidraRPXLoader, Cursor AI for structuring notes, helping decompile, and cross-referencing findings.
