@@ -10,7 +10,7 @@ Smaller in size and open source.
 | New Releases | `000500001FA82300` | [NewReleases.MD](docs/Title/NewReleases.MD) | `Release/1fa82300/` | Tells kiosk menu what titles are "new".|
 | About Wii U | `000500001FA82000` | [AboutWiiU.MD](docs/Title/AboutWiiU.MD) | `Release/1fa82000/` | About Wii U bubble (right side of game selector); videos in `meta/`. |
 | Attract Mode | `000500001FA82100` | [AttractMode.MD](docs/Title/AttractMode.MD) | `Release/1fa82100/` | Idle attract videos (`meta/`). |
-| About Amiibo | `000500001FA83300` | [AboutAmiibo.MD](docs/Title/AboutAmiibo.MD) | `Release/1fa83300/` | About amiibo bubble (left side of game selector); video in `meta/`. |
+| About Amiibo | `000500001FA83300` | [AboutAmiibo.MD](docs/Title/Aboutamiibo.MD) | `Release/1fa83300/` | About amiibo bubble (left side of game selector); video in `meta/`. |
 | Exhibition Mode | `000500001FA82700` | [ExhibitionMode.MD](docs/Title/ExhibitionMode.MD) | `Release/1fa82700/` | Dual-screen movie loop when Exhibition Mode is enabled (`meta/TVnn.mp4` + `DRCnn.mp4`). |
 
 Note: titles may show up as "???" on the Wii U. Do not delete them. No `content/` folder is required.
