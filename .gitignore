@@ -1,0 +1,51 @@
+# Private dumps, original titles, Ghidra projects, decompilations.
+# Keep a local SourceCD/README.md; never commit the rest.
+SourceCD/*
+!SourceCD/README.md
+
+# FTP-ready trees (CMake copies the RPX; generate_title_xml.py writes XML).
+Release/*
+!Release/README.md
+
+# Generated Cafe title XML copies next to each title (Release/ is the output).
+# Sample catalogs in content/ stay in git.
+**/code/
+**/meta/
+
+# Generated binaries (wut / CMake). Rebuild instead of committing.
+*.rpx
+*.wuhb
+*.elf
+*.o
+*.d
+*.map
+
+# wut / CMake — every title
+**/build/
+**/mlc/
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+cmake_install.cmake
+CTestTestfile.cmake
+compile_commands.json
+*.ninja
+.ninja_deps
+.ninja_log
+
+# User / dump videos — never commit
+**/*.mp4
+**/*.h264
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS / editor
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+.idea/
