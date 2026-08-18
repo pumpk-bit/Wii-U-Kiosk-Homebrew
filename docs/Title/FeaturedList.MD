@@ -24,7 +24,7 @@ Kiosk Menu reads `Featured.xml` from this title's `meta/` folder.
     meta.xml
 ```
 
-FTP-ready tree after build: [`Release/1fa82200/`](../../Release/1fa82200/).
+Pre-built in releases: `1fa82200/` inside [All-In-One](../../Release/All-In-One/).
 
 ---
 
@@ -43,23 +43,19 @@ FTP-ready tree after build: [`Release/1fa82200/`](../../Release/1fa82200/).
 | `start_date` / `end_date` | Date + time when the entry is active |
 | element body | Full **16-hex** demo title ID |
 
-The sample ID `000500021FA82201` in this repo is a **placeholder**. Replace it with a real demo title you have installed.
+The sample ID `000500021FA82201` is a **placeholder**. Replace it with a real demo title you have installed.
 
 ---
 
 ## Which title ID to use
 
-Demo tiles live under:
-
-`mlc/usr/title/00050002/<8-char-id>/`
-
-Build the full title like this:
+Demo tiles live under `mlc/usr/title/00050002/<8-char-id>/`.
 
 ```text
 00050002 + 10128500  ->  0005000210128500
 ```
 
-For kiosk menu tiles, the **stub** (`...FF`) is often the right ID to use because that is what the carousel shows. Use the title ID your kiosk menu actually expects for that entry.
+For kiosk menu tiles, the **stub** (`...FF`) is often the right ID — use the ID your kiosk menu actually expects.
 
 Example:
 
@@ -69,25 +65,24 @@ Example:
 
 ---
 
-## Add or remove demos
+## Customize
 
-1. Make sure the demo is installed under `mlc/usr/title/00050002/`.
-2. Edit `Release/1fa82200/meta/Featured.xml` (the generator will not overwrite it).
-3. Add or remove `<title ...>` lines.
-4. Upload the changed file or full title.
-5. Reboot or re-open Kiosk Menu.
+1. Make sure each demo is installed under `mlc/usr/title/00050002/`.
+2. Edit `meta/Featured.xml` — add or remove `<title ...>` lines.
+3. Re-upload the file or full title, then reboot or re-open Kiosk Menu.
 
-Remove a line to hide that title from **Featured**. The demo can still exist on NAND and still appear elsewhere.
+Removing a line hides that title from **Featured** only; it can still appear elsewhere.
 
 ---
 
 ## Install
 
-1. Build the project: [HowToBuild.MD](../HowToBuild.MD#featured-list--1fa82200).
-2. Upload [`Release/1fa82200/`](../../Release/1fa82200/) to `mlc:/usr/title/00050000/1fa82200/`.
-3. Reboot and open Kiosk Menu.
+1. Download the latest release from [GitHub Releases](https://github.com/pumpk-bit/Wii-U-Kiosk-Homebrew/releases). Use the `1fa82200/` folder from **All-In-One**.
+2. Edit `meta/Featured.xml` with your demo title IDs.
+3. FTP the folder to `mlc:/usr/title/00050000/1fa82200/`.
+4. Reboot and open Kiosk Menu.
 
-Per-folder install layout: [Release/README.md](../../Release/README.md).
+To compile yourself: [HowToBuild.MD](../HowToBuild.MD). File checklist: [Release/README.md](../../Release/README.md).
 
 ---
 
@@ -98,7 +93,7 @@ Per-folder install layout: [Release/README.md](../../Release/README.md).
 | Featured row is empty | `Featured.xml` missing, broken, or all dates are out of range |
 | Title listed but not visible | Wrong `00050002` ID, wrong region, or demo not installed |
 | Wrong order | Duplicate / out-of-order `order` values |
-| Wrong demo in Featured row | Wrong `00050002` ID in `Featured.xml`, or duplicate / conflicting `order` values |
+| Wrong demo in Featured row | Wrong ID in `Featured.xml`, or conflicting `order` values |
 | `???` on Wii U Menu | Normal for helper titles |
 
 Related:

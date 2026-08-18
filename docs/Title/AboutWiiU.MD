@@ -5,17 +5,13 @@ Special kiosk helper for the **About Wii U** bubble in Kiosk Menu.
 - **Title ID:** `000500001FA82000`
 - **MLC path:** `mlc/usr/title/00050000/1fa82000/`
 - **RPX:** `aboutwiiu_wrapper.rpx`
-- **User files:** `meta/AboutWiiU00.mp4` ... `meta/AboutWiiU05.mp4`
+- **User files:** `meta/AboutWiiU00.mp4` … `meta/AboutWiiU05.mp4`
 
-This title stores the six About Wii U clips on MLC. Kiosk Menu scans `meta/`
-and plays them in-menu; it may also launch this wrapper with a slot index in
-some configurations.
+Kiosk Menu scans `meta/` and plays the six About Wii U clips in-menu.
 
 ---
 
 ## What it does
-
-Kiosk Menu uses this title for the six **About Wii U** videos:
 
 | Slot | Typical subject |
 |------|------------------|
@@ -26,7 +22,7 @@ Kiosk Menu uses this title for the six **About Wii U** videos:
 | `04` | eShop |
 | `05` | Accessories |
 
-The exact button text lives in Kiosk Menu itself. This title just needs the matching MP4 files in `meta/`.
+Button labels live in Kiosk Menu itself. This title only needs the matching MP4 files in `meta/`.
 
 ---
 
@@ -48,39 +44,17 @@ The exact button text lives in Kiosk Menu itself. This title just needs the matc
     AboutWiiU05.mp4
 ```
 
-FTP-ready base folder after build: [`Release/1fa82000/`](../../Release/1fa82000/).
+Pre-built in releases: `1fa82000/` inside [All-In-One](../../Release/All-In-One/). Videos are **not** included.
 
-Videos are **not** included in this repo.
-
----
-
-## Video naming
-
-Use these exact filenames:
-
-```text
-AboutWiiU00.mp4
-AboutWiiU01.mp4
-AboutWiiU02.mp4
-AboutWiiU03.mp4
-AboutWiiU04.mp4
-AboutWiiU05.mp4
-```
-
-The wrapper and kiosk menu expect this naming pattern. Wrong names mean the button may do nothing or fail to find the movie.
+Use these exact filenames — wrong names mean a button may not find its clip.
 
 ---
 
 ## Encode video
 
-Use the same encoding style as kiosk demo trailers:
+- **1920×1080**, H.264 High@L4.0, AAC stereo 48 kHz, `.mp4` container
 
-- **1920x1080**
-- **H.264 High@L4.0**
-- **AAC stereo 48 kHz**
-- `.mp4` container
-
-Example:
+Example (repeat for slots `00`–`05`):
 
 ```powershell
 ffmpeg -y -i "YourSource.mp4" `
@@ -95,31 +69,16 @@ ffmpeg -y -i "YourSource.mp4" `
   "AboutWiiU00.mp4"
 ```
 
-Repeat for the other slots.
-
----
-
-## Build
-
-```sh
-cd "About Wii U"
-mkdir -p build && cd build
-powerpc-eabi-cmake ..
-cmake --build .
-```
-
-Build notes: [HowToBuild.MD](../HowToBuild.MD#about-wii-u--1fa82000).
-
 ---
 
 ## Install
 
-1. Build the project.
-2. Put your videos under `Release/1fa82000/meta/`.
-3. Upload `Release/1fa82000/` to `mlc:/usr/title/00050000/1fa82000/`.
+1. Download the latest release from [GitHub Releases](https://github.com/pumpk-bit/Wii-U-Kiosk-Homebrew/releases). Use the `1fa82000/` folder from **All-In-One**.
+2. Put `AboutWiiU00.mp4` … `AboutWiiU05.mp4` in `meta/` (not included in the release).
+3. FTP the folder to `mlc:/usr/title/00050000/1fa82000/`.
 4. Reboot or restart Kiosk Menu.
 
-See also: [Release/README.md](../../Release/README.md).
+To compile yourself: [HowToBuild.MD](../HowToBuild.MD). File checklist: [Release/README.md](../../Release/README.md).
 
 ---
 
@@ -127,13 +86,13 @@ See also: [Release/README.md](../../Release/README.md).
 
 | Issue | Check |
 |-------|-------|
-| About Wii U button opens but no video plays | Missing or misnamed file (e.g. `AboutWiiU03.mp4`) |
-| Black screen during playback | Re-encode the MP4 to kiosk-friendly H.264 + AAC |
-| Only some buttons work | You only added some of the six files |
-| Bubble missing in Kiosk Menu | This title is not installed on MLC |
+| Button opens but no video plays | Missing or misnamed file (e.g. `AboutWiiU03.mp4`) |
+| Black screen during playback | Re-encode to kiosk-friendly H.264 + AAC |
+| Only some buttons work | Not all six files are present |
+| Bubble missing in Kiosk Menu | Title not installed on MLC |
 
 Related:
 
 - [AttractMode.MD](AttractMode.MD)
-- [AboutAmiibo.MD](AboutAmiibo.MD)
+- [Aboutamiibo.MD](Aboutamiibo.MD)
 - [HowKioskMenuWorks.MD](../HowKioskMenuWorks.MD)

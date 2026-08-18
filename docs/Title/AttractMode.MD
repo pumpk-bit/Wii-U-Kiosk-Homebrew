@@ -5,47 +5,26 @@ Special kiosk helper for idle / attract videos when Kiosk Menu is left alone.
 - **Title ID:** `000500001FA82100`
 - **MLC path:** `mlc/usr/title/00050000/1fa82100/`
 - **RPX:** `attractmode_wrapper.rpx`
-- **User files:** `meta/AttractMode00.mp4` ... `meta/AttractMode11.mp4`
+- **User files:** `meta/AttractMode00.mp4` … `meta/AttractMode11.mp4`
 
-This title stores attract-mode clips on MLC. Kiosk Menu scans `meta/` and
-builds a rotating playlist (`GetNextAttractModeMovie`); it does not launch the
-wrapper RPX for normal attract playback.
+Kiosk Menu scans `meta/` and builds a rotating attract playlist in-menu.
 
 ---
 
 ## What it does
 
-When attract mode is enabled and Kiosk Menu decides to enter the idle movie flow, it reads videos from this title's `meta/` folder.
+When attract mode is enabled, Kiosk Menu reads clips from this title's `meta/` folder.
 
-### How many videos?
-
-This project targets **12 numbered clips** — what known retail kiosk installs use:
+This project targets **12 numbered clips** (known retail kiosk installs):
 
 ```text
 AttractMode00.mp4
 AttractMode01.mp4
-AttractMode02.mp4
-AttractMode03.mp4
-AttractMode04.mp4
-AttractMode05.mp4
-AttractMode06.mp4
-AttractMode07.mp4
-AttractMode08.mp4
-AttractMode09.mp4
-AttractMode10.mp4
+...
 AttractMode11.mp4
 ```
 
-You do **not** need 100 files. Reverse engineering of retail `MenuApp.rpx` shows:
-
-- Kiosk Menu **scans** `meta/` for filenames starting with `AttractMode`
-- It parses a **two-digit index** from each name (e.g. `AttractMode07.mp4` → slot 7)
-- It builds a **rotating playlist** and advances with `GetNextAttractModeMovie`, wrapping when it reaches the end
-- Decompiled code allocates an internal table with **room for up to 100 slots** — that is a code-side capacity limit, not a retail content count
-
-So in practice: **12 clips on known dumps**, but the menu will pick up any correctly named `AttractModeXX.mp4` files it finds (00–99 by naming). Gaps in the sequence are fine; only present files are played.
-
-If you only want a few videos, keep the naming sequence correct for the files you do provide. Fewer than 12 is untested here but matches how the scanner works.
+Retail `MenuApp.rpx` scans for filenames starting with `AttractMode`, parses a two-digit index, and rotates with `GetNextAttractModeMovie`. You do **not** need 100 files — that is an internal table limit. Gaps in numbering are fine; only present files are played.
 
 More context: [HowKioskMenuWorks.MD — Movies and attract mode](../HowKioskMenuWorks.MD#movies-and-attract-mode).
 
@@ -66,15 +45,15 @@ More context: [HowKioskMenuWorks.MD — Movies and attract mode](../HowKioskMenu
     AttractMode11.mp4
 ```
 
-FTP-ready base folder after build: [`Release/1fa82100/`](../../Release/1fa82100/).
+Pre-built in releases: `1fa82100/` inside [All-In-One](../../Release/All-In-One/). Videos are **not** included.
 
-Videos are **not** included in this repo.
+Attract timing and playback live in Kiosk Menu — this title only supplies the files.
 
 ---
 
 ## Encode video
 
-Use the same settings as kiosk trailers and the About Wii U clips:
+Use the same settings as other kiosk helper videos:
 
 ```powershell
 ffmpeg -y -i "YourSource.mp4" `
@@ -89,40 +68,18 @@ ffmpeg -y -i "YourSource.mp4" `
   "AttractMode00.mp4"
 ```
 
-Re-encode every clip you plan to use.
-
----
-
-## Build
-
-```sh
-cd "Attract Mode"
-mkdir -p build && cd build
-powerpc-eabi-cmake ..
-cmake --build .
-```
-
-Build notes: [HowToBuild.MD](../HowToBuild.MD#attract-mode--1fa82100).
+Re-encode every clip you plan to use. Attract videos are usually silent; audio may still work.
 
 ---
 
 ## Install
 
-1. Build the project.
-2. Put your attract-mode videos under `Release/1fa82100/meta/`.
-3. Upload `Release/1fa82100/` to `mlc:/usr/title/00050000/1fa82100/`.
+1. Download the latest release from [GitHub Releases](https://github.com/pumpk-bit/Wii-U-Kiosk-Homebrew/releases). Use the `1fa82100/` folder from **All-In-One**.
+2. Put `AttractMode00.mp4` … `AttractMode11.mp4` in `meta/` (not included in the release).
+3. FTP the folder to `mlc:/usr/title/00050000/1fa82100/`.
 4. Reboot or restart Kiosk Menu.
 
-Install tree details: [Release/README.md](../../Release/README.md).
-
----
-
-## Notes
-
-- This title is only the **movie source** on MLC. Attract-mode timing and playback live in Kiosk Menu.
-- Kiosk Menu can have multiple attract-mode styles and settings, but this title's job is just to provide the video files.
-- If attract mode looks broken, also check the menu's own settings and not only these MP4s.
-- Attract videos are usually without audio. May work with audio.
+To compile yourself: [HowToBuild.MD](../HowToBuild.MD). File checklist: [Release/README.md](../../Release/README.md).
 
 ---
 
@@ -130,13 +87,13 @@ Install tree details: [Release/README.md](../../Release/README.md).
 
 | Issue | Check |
 |-------|-------|
-| Attract mode never starts | Kiosk Menu settings may disable or change attract mode behavior |
-| Attract mode starts but no movie plays | Missing or misnamed `AttractModeXX.mp4` files (`XX` = two-digit slot, e.g. `07`) |
+| Attract mode never starts | Kiosk Menu settings may disable attract mode |
+| Attract starts but no movie plays | Missing or misnamed `AttractModeXX.mp4` files |
 | Some clips work, some do not | Wrong numbering or bad encode on certain files |
 | Black screen | Re-encode with H.264 + AAC |
 
 Related:
 
 - [AboutWiiU.MD](AboutWiiU.MD)
-- [AboutAmiibo.MD](AboutAmiibo.MD)
+- [Aboutamiibo.MD](Aboutamiibo.MD)
 - [HowKioskMenuWorks.MD](../HowKioskMenuWorks.MD)

@@ -7,21 +7,19 @@ Special kiosk helper for the **About amiibo** bubble in Kiosk Menu.
 - **RPX:** `aboutamiibo_wrapper.rpx`
 - **User file:** `meta/AboutAmiibo00.mp4`
 
-This title stores the About amiibo clip on MLC. Kiosk Menu scans `meta/` and
-plays it in-menu; it may also launch this wrapper with argument `0` in some
-configurations.
+Kiosk Menu scans `meta/` and plays the clip in-menu.
 
 ---
 
 ## What it does
 
-Kiosk Menu uses this title for the **About amiibo** screen / button.
-
-This expects a single clip:
+This title supplies the **About amiibo** video. Kiosk Menu expects one file:
 
 ```text
 AboutAmiibo00.mp4
 ```
+
+Button labels live in Kiosk Menu itself.
 
 ---
 
@@ -38,15 +36,13 @@ AboutAmiibo00.mp4
     AboutAmiibo00.mp4
 ```
 
-FTP-ready base folder after build: [`Release/1fa83300/`](../../Release/1fa83300/).
-
-Video is **not** included in this repo.
+Pre-built in releases: `1fa83300/` inside [All-In-One](../../Release/All-In-One/). Video is **not** included.
 
 ---
 
 ## Encode video
 
-Use the same encoding rules as the kiosk trailers and other helper-video titles:
+Use the same encoding rules as other kiosk helper videos:
 
 ```powershell
 ffmpeg -y -i "YourSource.mp4" `
@@ -63,34 +59,14 @@ ffmpeg -y -i "YourSource.mp4" `
 
 ---
 
-## Build
-
-```sh
-cd "About Amiibo"
-mkdir -p build && cd build
-powerpc-eabi-cmake ..
-cmake --build .
-```
-
-Build notes: [HowToBuild.MD](../HowToBuild.MD#about-amiibo--1fa83300).
-
----
-
 ## Install
 
-1. Build the project.
-2. Put your video at `Release/1fa83300/meta/AboutAmiibo00.mp4`.
-3. Upload `Release/1fa83300/` to `mlc:/usr/title/00050000/1fa83300/`.
+1. Download the latest release from [GitHub Releases](https://github.com/pumpk-bit/Wii-U-Kiosk-Homebrew/releases). Use the `1fa83300/` folder from **All-In-One**.
+2. Put `AboutAmiibo00.mp4` in `meta/` (not included in the release).
+3. FTP the folder to `mlc:/usr/title/00050000/1fa83300/`.
 4. Reboot or restart Kiosk Menu.
 
-Install tree details: [Release/README.md](../../Release/README.md).
-
----
-
-## Notes
-
-- This title is separate from Kiosk Menu text and button labels.
-- The menu UI decides when to show the About amiibo entry; this title only supplies the playable clip.
+To compile yourself: [HowToBuild.MD](../HowToBuild.MD). File checklist: [Release/README.md](../../Release/README.md).
 
 ---
 
@@ -99,8 +75,8 @@ Install tree details: [Release/README.md](../../Release/README.md).
 | Issue | Check |
 |-------|-------|
 | About amiibo button does nothing | Missing `AboutAmiibo00.mp4` or bad install path |
-| Black screen/one frame | Re-encode the MP4 |
-| Bubble missing in Kiosk Menu | The title is missing or the menu build does not expose that entry |
+| Black screen / one frame | Re-encode the MP4 |
+| Bubble missing in Kiosk Menu | Title not installed on MLC |
 
 Related:
 

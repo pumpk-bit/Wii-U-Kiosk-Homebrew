@@ -24,7 +24,7 @@ Same idea as Featured List, but with a different file name and XML type.
     meta.xml
 ```
 
-FTP-ready tree after build: [`Release/1fa82300/`](../../Release/1fa82300/).
+Pre-built in releases: `1fa82300/` inside [All-In-One](../../Release/All-In-One/).
 
 ---
 
@@ -49,15 +49,11 @@ The sample ID `000500021FA82301` is fictional. Replace it with a real demo you i
 
 ## Which title ID to use
 
-Build the ID from the `00050002` folder:
-
 ```text
 00050002 + 10128500  ->  0005000210128500
 ```
 
-Like Featured, kiosk menu often cares about the **stub** / tile ID (`...FF`) rather than the playable sibling. Use the ID that matches how your kiosk menu presents the title.
-
-If unsure you can add both.
+Like Featured, kiosk menu often cares about the **stub** / tile ID (`...FF`). Use the ID that matches how your kiosk menu presents the title.
 
 Example:
 
@@ -67,25 +63,24 @@ Example:
 
 ---
 
-## Add or remove demos
+## Customize
 
-1. Install the demo under `mlc/usr/title/00050002/`.
-2. Edit `Release/1fa82300/meta/NewReleases.xml` (the generator will not overwrite it).
-3. Add or remove `<title ...>` lines.
-4. Upload the changed file or full title.
-5. Reboot or re-open Kiosk Menu.
+1. Install each demo under `mlc/usr/title/00050002/`.
+2. Edit `meta/NewReleases.xml` — add or remove `<title ...>` lines.
+3. Re-upload the file or full title, then reboot or re-open Kiosk Menu.
 
-Removing a line only removes it from the **New** row. It can still appear under **All Titles** or **Featured** if those sources still reference it.
+Removing a line only removes it from the **New** row.
 
 ---
 
 ## Install
 
-1. Build the project: [HowToBuild.MD](../HowToBuild.MD#new-releases--1fa82300).
-2. Upload [`Release/1fa82300/`](../../Release/1fa82300/) to `mlc:/usr/title/00050000/1fa82300/`.
-3. Reboot and test in Kiosk Menu.
+1. Download the latest release from [GitHub Releases](https://github.com/pumpk-bit/Wii-U-Kiosk-Homebrew/releases). Use the `1fa82300/` folder from **All-In-One**.
+2. Edit `meta/NewReleases.xml` with your demo title IDs.
+3. FTP the folder to `mlc:/usr/title/00050000/1fa82300/`.
+4. Reboot and open Kiosk Menu.
 
-Per-folder install layout: [Release/README.md](../../Release/README.md).
+To compile yourself: [HowToBuild.MD](../HowToBuild.MD). File checklist: [Release/README.md](../../Release/README.md).
 
 ---
 
@@ -96,7 +91,7 @@ Per-folder install layout: [Release/README.md](../../Release/README.md).
 | New row is empty | `NewReleases.xml` missing, broken, or all dates are out of range |
 | Title listed but not visible | Wrong `00050002` ID, wrong region, or demo not installed |
 | Wrong order | Duplicate / out-of-order `order` values |
-| Wrong demo in New row | Wrong `00050002` ID in `NewReleases.xml`, or duplicate / conflicting `order` values |
+| Wrong demo in New row | Wrong ID in `NewReleases.xml`, or conflicting `order` values |
 | `???` on Wii U Menu | Normal for helper titles |
 
 Related:

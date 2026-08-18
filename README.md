@@ -20,30 +20,24 @@ For reverse-engineering notes on how the retail kiosk menu uses these titles, se
 
 ## How to install (FTP)
 
-Please read the tutorial first before copying.
+Read the tutorial for each title before copying files.
 
-Build first (`bash tools/build-all.sh`) so each `Release/<unique-id>/code/` folder
-contains its RPX. Then copy a `Release/<unique-id>/` folder to
-`mlc:/usr/title/00050000/<unique-id>/`.
+1. Download the latest release from [GitHub Releases](https://github.com/pumpk-bit/Wii-U-Kiosk-Homebrew/releases). **All-In-One** includes every pre-built title folder.
+2. Customize `meta/` if needed (demo lists, videos — not included in the release).
+3. FTP each `1fa8xxxx/` folder to `mlc:/usr/title/00050000/<unique-id>/`.
+4. Reboot or restart Kiosk Menu.
 
-Example:
-
-* Featured List
-
-Copy the folder over:
+Example — **Featured List**:
 
 ```
 mlc:/usr/title/00050000/1fa82200/
+  code/   app.xml  cos.xml  title_list.rpx
+  meta/   Featured.xml  meta.xml
 ```
 
-Make sure the files are there:
+Per-title steps: see the **Tutorial** column above. File checklist: [Release/README.md](Release/README.md).
 
-```
-mlc:/usr/title/00050000/1fa82200/code/  Should contain: app.xml  cos.xml  title_list.rpx
-mlc:/usr/title/00050000/1fa82200/meta/  Should contain: Featured.xml  meta.xml
-```
-
-
+To compile from source instead: [HowToBuild.MD](docs/HowToBuild.MD).
 
 ## How to build
 

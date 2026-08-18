@@ -5,25 +5,23 @@ Dual-screen movie loop for kiosk **Exhibition Mode** (`nonInteractiveMode` in sa
 - **Title ID:** `000500001FA82700`
 - **MLC path:** `mlc/usr/title/00050000/1fa82700/`
 - **RPX:** `exhibition_wrapper.rpx` (install-only stub; Kiosk Menu does not launch it for playback)
-- **User files:** `meta/TV00.mp4` … `meta/TV99.mp4` and `meta/DRC00.mp4` … `meta/DRC99.mp4`
+- **User files:** `meta/TV00.mp4` … and `meta/DRC00.mp4` … (paired, equal count)
 
-This is **not** Attract Mode. Attract mode still runs on the normal kiosk UI. Exhibition Mode is toggled under **Kiosk Settings → Set Menu Options → Exhibition Mode**.
+This is **not** Attract Mode. Toggle under **Kiosk Settings → Set Menu Options → Exhibition Mode**.
 
 ---
 
-## What Kiosk Menu expects
+## What it does
 
-When `<nonInteractiveMode>1</nonInteractiveMode>` is set in MenuApp save data, the menu:
+When `<nonInteractiveMode>1</nonInteractiveMode>` is set in MenuApp save data, Kiosk Menu:
 
-1. Scans MCP for title **`000500001FA82700`**
+1. Scans title **`000500001FA82700`**
 2. Lists that title's `/meta/` directory
-3. Keeps files named exactly:
-   - `TV00.mp4` … `TV99.mp4` (8 characters)
-   - `DRC00.mp4` … `DRC99.mp4` (9 characters)
+3. Keeps files named exactly `TV00.mp4` … `TV99.mp4` and `DRC00.mp4` … `DRC99.mp4`
 4. Plays TV clips on HDMI and DRC clips on the GamePad
 5. Requires **equal** TV and DRC counts
 
-Wrong names log `ProcessNonInteractiveMovieList(): … is an invalid movie name`. Missing or mismatched counts show **Exhibition Mode is On** with an error string on both screens.
+Wrong names log `ProcessNonInteractiveMovieList(): … is an invalid movie name`. Mismatched counts show **Exhibition Mode is On** with an error on both screens.
 
 More context: [HowKioskMenuWorks.MD — Exhibition Mode](../HowKioskMenuWorks.MD#exhibition-mode-non-interactive).
 
@@ -46,22 +44,20 @@ More context: [HowKioskMenuWorks.MD — Exhibition Mode](../HowKioskMenuWorks.MD
     ...
 ```
 
-FTP-ready base folder after build: [`Release/1fa82700/`](../../Release/1fa82700/).
-
-Videos are **not** included in this repo.
+Pre-built in releases: `1fa82700/` inside [All-In-One](../../Release/All-In-One/). Videos are **not** included.
 
 ---
 
 ## Prepare your videos
 
-Use the helper script from this title folder:
+Use the helper script (clone the repo, or copy `prepare_videos.py` from **Exhibition Mode/tools/**):
 
 ```sh
 cd "Exhibition Mode"
 python3 tools/prepare_videos.py \
   --tv /path/to/tv1.mp4 /path/to/tv2.mp4 \
   --drc /path/to/pad1.mp4 /path/to/pad2.mp4 \
-  --out ../Release/1fa82700/meta
+  --out /path/to/1fa82700/meta
 ```
 
 Or explicit pairs:
@@ -69,10 +65,10 @@ Or explicit pairs:
 ```sh
 python3 tools/prepare_videos.py \
   --pairs lobby_tv.mp4:lobby_pad.mp4 intro_tv.mp4:intro_pad.mp4 \
-  --out ../Release/1fa82700/meta
+  --out /path/to/1fa82700/meta
 ```
 
-You usually want **different** encodes for TV (1920×1080) and GamePad (854×480), even if the content is the same scene.
+You usually want **different** encodes for TV (1920×1080) and GamePad (854×480).
 
 ### Encode examples
 
@@ -104,26 +100,15 @@ Then run `prepare_videos.py` to install them as `TV00.mp4` / `DRC00.mp4`.
 
 ---
 
-## Build
-
-```sh
-cd "Exhibition Mode"
-mkdir -p build && cd build
-powerpc-eabi-cmake ..
-cmake --build .
-```
-
-Build notes: [HowToBuild.MD](../HowToBuild.MD#exhibition-mode--1fa82700).
-
----
-
 ## Install
 
-1. Build the project.
-2. Copy your paired videos into `Release/1fa82700/meta/` (use `prepare_videos.py`).
-3. FTP `Release/1fa82700/` to `mlc:/usr/title/00050000/1fa82700/`.
+1. Download the latest release from [GitHub Releases](https://github.com/pumpk-bit/Wii-U-Kiosk-Homebrew/releases). Use the `1fa82700/` folder from **All-In-One**.
+2. Add paired `TVnn.mp4` / `DRCnn.mp4` files to `meta/` (see **Prepare your videos** above).
+3. FTP the folder to `mlc:/usr/title/00050000/1fa82700/`.
 4. On the kiosk: **Kiosk Settings → Set Menu Options → Exhibition Mode → On**.
 5. Reboot or restart Kiosk Menu.
+
+To compile yourself: [HowToBuild.MD](../HowToBuild.MD). File checklist: [Release/README.md](../../Release/README.md).
 
 ---
 
@@ -132,7 +117,7 @@ Build notes: [HowToBuild.MD](../HowToBuild.MD#exhibition-mode--1fa82700).
 | Issue | Check |
 |-------|-------|
 | Normal game selector still shows | Exhibition Mode off in save data, or menu not restarted |
-| “Exhibition Mode is On” but no video | Title `1fa82700` missing from MLC, or no `TVnn`/`DRCnn` files |
+| “Exhibition Mode is On” but no video | Title missing from MLC, or no `TVnn`/`DRCnn` files |
 | “Movies … not equal” | Mismatch in TV vs DRC file count |
 | “Invalid movie name” | Filename must be exactly `TV00.mp4` or `DRC00.mp4` style |
 | Black screen after names fixed | Re-encode with H.264 + AAC, `-movflags +faststart` |
