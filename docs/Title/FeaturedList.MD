@@ -24,7 +24,6 @@ Kiosk Menu reads `Featured.xml` from this title's `meta/` folder.
     meta.xml
 ```
 
-Pre-built in releases: `1fa82200/` inside [All-In-One](../../Release/All-In-One/).
 
 ---
 
@@ -55,7 +54,7 @@ Demo tiles live under `mlc/usr/title/00050002/<8-char-id>/`.
 00050002 + 10128500  ->  0005000210128500
 ```
 
-For kiosk menu tiles, the **stub** (`...FF`) is often the right ID — use the ID your kiosk menu actually expects.
+For kiosk menu tiles, the **stub** (`...FF`) is often the right ID, use the ID your kiosk menu actually expects.
 
 Example:
 
@@ -68,7 +67,7 @@ Example:
 ## Customize
 
 1. Make sure each demo is installed under `mlc/usr/title/00050002/`.
-2. Edit `meta/Featured.xml` — add or remove `<title ...>` lines.
+2. Edit `meta/Featured.xml`, add or remove `<title ...>` lines.
 3. Re-upload the file or full title, then reboot or re-open Kiosk Menu.
 
 Removing a line hides that title from **Featured** only; it can still appear elsewhere.
@@ -82,7 +81,7 @@ Removing a line hides that title from **Featured** only; it can still appear els
 3. FTP the folder to `mlc:/usr/title/00050000/1fa82200/`.
 4. Reboot and open Kiosk Menu.
 
-To compile yourself: [HowToBuild.MD](../HowToBuild.MD). File checklist: [Release/README.md](../../Release/README.md).
+To compile yourself: [HowToBuild.MD](../HowToBuild.MD).
 
 ---
 

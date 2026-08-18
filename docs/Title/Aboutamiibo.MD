@@ -19,7 +19,6 @@ This title supplies the **About amiibo** video. Kiosk Menu expects one file:
 AboutAmiibo00.mp4
 ```
 
-Button labels live in Kiosk Menu itself.
 
 ---
 
@@ -36,7 +35,6 @@ Button labels live in Kiosk Menu itself.
     AboutAmiibo00.mp4
 ```
 
-Pre-built in releases: `1fa83300/` inside [All-In-One](../../Release/All-In-One/). Video is **not** included.
 
 ---
 
@@ -66,7 +64,7 @@ ffmpeg -y -i "YourSource.mp4" `
 3. FTP the folder to `mlc:/usr/title/00050000/1fa83300/`.
 4. Reboot or restart Kiosk Menu.
 
-To compile yourself: [HowToBuild.MD](../HowToBuild.MD). File checklist: [Release/README.md](../../Release/README.md).
+To compile yourself: [HowToBuild.MD](../HowToBuild.MD).
 
 ---
 

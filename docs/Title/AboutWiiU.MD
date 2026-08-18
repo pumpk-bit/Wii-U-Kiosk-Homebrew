@@ -44,9 +44,8 @@ Button labels live in Kiosk Menu itself. This title only needs the matching MP4 
     AboutWiiU05.mp4
 ```
 
-Pre-built in releases: `1fa82000/` inside [All-In-One](../../Release/All-In-One/). Videos are **not** included.
 
-Use these exact filenames — wrong names mean a button may not find its clip.
+Use these exact filenames, wrong names mean a button may not find its clip.
 
 ---
 
@@ -78,7 +77,7 @@ ffmpeg -y -i "YourSource.mp4" `
 3. FTP the folder to `mlc:/usr/title/00050000/1fa82000/`.
 4. Reboot or restart Kiosk Menu.
 
-To compile yourself: [HowToBuild.MD](../HowToBuild.MD). File checklist: [Release/README.md](../../Release/README.md).
+To compile yourself: [HowToBuild.MD](../HowToBuild.MD).
 
 ---
 

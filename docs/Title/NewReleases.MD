@@ -24,8 +24,6 @@ Same idea as Featured List, but with a different file name and XML type.
     meta.xml
 ```
 
-Pre-built in releases: `1fa82300/` inside [All-In-One](../../Release/All-In-One/).
-
 ---
 
 ## `NewReleases.xml` format
@@ -66,7 +64,7 @@ Example:
 ## Customize
 
 1. Install each demo under `mlc/usr/title/00050002/`.
-2. Edit `meta/NewReleases.xml` — add or remove `<title ...>` lines.
+2. Edit `meta/NewReleases.xml`, add or remove `<title ...>` lines.
 3. Re-upload the file or full title, then reboot or re-open Kiosk Menu.
 
 Removing a line only removes it from the **New** row.
@@ -80,7 +78,7 @@ Removing a line only removes it from the **New** row.
 3. FTP the folder to `mlc:/usr/title/00050000/1fa82300/`.
 4. Reboot and open Kiosk Menu.
 
-To compile yourself: [HowToBuild.MD](../HowToBuild.MD). File checklist: [Release/README.md](../../Release/README.md).
+To compile yourself: [HowToBuild.MD](../HowToBuild.MD). 
 
 ---
 

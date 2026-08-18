@@ -45,9 +45,6 @@ More context: [HowKioskMenuWorks.MD — Movies and attract mode](../HowKioskMenu
     AttractMode11.mp4
 ```
 
-Pre-built in releases: `1fa82100/` inside [All-In-One](../../Release/All-In-One/). Videos are **not** included.
-
-Attract timing and playback live in Kiosk Menu — this title only supplies the files.
 
 ---
 
@@ -79,7 +76,7 @@ Re-encode every clip you plan to use. Attract videos are usually silent; audio m
 3. FTP the folder to `mlc:/usr/title/00050000/1fa82100/`.
 4. Reboot or restart Kiosk Menu.
 
-To compile yourself: [HowToBuild.MD](../HowToBuild.MD). File checklist: [Release/README.md](../../Release/README.md).
+To compile yourself: [HowToBuild.MD](../HowToBuild.MD). 
 
 ---
 

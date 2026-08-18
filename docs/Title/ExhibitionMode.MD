@@ -7,13 +7,13 @@ Dual-screen movie loop for kiosk **Exhibition Mode** (`nonInteractiveMode` in sa
 - **RPX:** `exhibition_wrapper.rpx` (install-only stub; Kiosk Menu does not launch it for playback)
 - **User files:** `meta/TV00.mp4` … and `meta/DRC00.mp4` … (paired, equal count)
 
-This is **not** Attract Mode. Toggle under **Kiosk Settings → Set Menu Options → Exhibition Mode**.
+This is **not** Attract Mode. Toggle under **Kiosk Settings → Set Menu Options → Exhibition Mode**. You won't be able to play any games.
 
 ---
 
 ## What it does
 
-When `<nonInteractiveMode>1</nonInteractiveMode>` is set in MenuApp save data, Kiosk Menu:
+When Kiosk Menu Exhibition is turned on:
 
 1. Scans title **`000500001FA82700`**
 2. Lists that title's `/meta/` directory
@@ -43,8 +43,6 @@ More context: [HowKioskMenuWorks.MD — Exhibition Mode](../HowKioskMenuWorks.MD
     DRC01.mp4
     ...
 ```
-
-Pre-built in releases: `1fa82700/` inside [All-In-One](../../Release/All-In-One/). Videos are **not** included.
 
 ---
 
@@ -98,6 +96,8 @@ ffmpeg -y -i "Source.mp4" `
 
 Then run `prepare_videos.py` to install them as `TV00.mp4` / `DRC00.mp4`.
 
+Or you can do this manually if needed. Just rename them to `TV00.mp4` / `DRC00.mp4`.
+
 ---
 
 ## Install
@@ -108,7 +108,7 @@ Then run `prepare_videos.py` to install them as `TV00.mp4` / `DRC00.mp4`.
 4. On the kiosk: **Kiosk Settings → Set Menu Options → Exhibition Mode → On**.
 5. Reboot or restart Kiosk Menu.
 
-To compile yourself: [HowToBuild.MD](../HowToBuild.MD). File checklist: [Release/README.md](../../Release/README.md).
+To compile yourself: [HowToBuild.MD](../HowToBuild.MD).
 
 ---
 
