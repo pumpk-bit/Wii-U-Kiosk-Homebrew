@@ -40,6 +40,8 @@ AboutAmiibo00.mp4
 
 ## Encode video
 
+* [ffmpeg](https://ffmpeg.org/download.html) for video.
+
 Use the same encoding rules as other kiosk helper videos:
 
 ```powershell
@@ -62,7 +64,7 @@ ffmpeg -y -i "YourSource.mp4" `
 1. Download the latest release from [GitHub Releases](https://github.com/pumpk-bit/Wii-U-Kiosk-Homebrew/releases). Use the `1fa83300/` folder from **All-In-One**.
 2. Put `AboutAmiibo00.mp4` in `meta/` (not included in the release).
 3. FTP the folder to `mlc:/usr/title/00050000/1fa83300/`.
-4. Reboot or restart Kiosk Menu.
+4. Reboot the Wii U.
 
 To compile yourself: [HowToBuild.MD](../HowToBuild.MD).
 

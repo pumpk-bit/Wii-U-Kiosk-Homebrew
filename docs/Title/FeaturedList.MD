@@ -70,7 +70,7 @@ Example:
 2. Edit `meta/Featured.xml`, add or remove `<title ...>` lines.
 3. Re-upload the file or full title, then reboot or re-open Kiosk Menu.
 
-Removing a line hides that title from **Featured** only; it can still appear elsewhere.
+Removing a line hides that title from **Featured** only. It will still appear elsewhere.
 
 ---
 
@@ -79,7 +79,7 @@ Removing a line hides that title from **Featured** only; it can still appear els
 1. Download the latest release from [GitHub Releases](https://github.com/pumpk-bit/Wii-U-Kiosk-Homebrew/releases). Use the `1fa82200/` folder from **All-In-One**.
 2. Edit `meta/Featured.xml` with your demo title IDs.
 3. FTP the folder to `mlc:/usr/title/00050000/1fa82200/`.
-4. Reboot and open Kiosk Menu.
+4. Reboot the Wii U.
 
 To compile yourself: [HowToBuild.MD](../HowToBuild.MD).
 
@@ -91,8 +91,8 @@ To compile yourself: [HowToBuild.MD](../HowToBuild.MD).
 |-------|-------|
 | Featured row is empty | `Featured.xml` missing, broken, or all dates are out of range |
 | Title listed but not visible | Wrong `00050002` ID, wrong region, or demo not installed |
-| Wrong order | Duplicate / out-of-order `order` values |
-| Wrong demo in Featured row | Wrong ID in `Featured.xml`, or conflicting `order` values |
+| WNot appearing | Duplicate / out-of-order `order` values |
+| Wrong demo in Featured | Wrong ID in `Featured.xml`, or conflicting `order` values |
 | `???` on Wii U Menu | Normal for helper titles |
 
 Related:

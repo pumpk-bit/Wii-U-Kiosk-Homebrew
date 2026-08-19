@@ -1,13 +1,12 @@
 # Exhibition Mode (`1fa82700`)
 
-Dual-screen movie loop for kiosk **Exhibition Mode** (`nonInteractiveMode` in save data). Replaces the interactive game selector with synchronized TV + GamePad videos.
+Dual-screen movie loop for kiosk **Exhibition Mode**. Replaces the interactive game selector with synchronized TV + GamePad videos.
 
 - **Title ID:** `000500001FA82700`
 - **MLC path:** `mlc/usr/title/00050000/1fa82700/`
-- **RPX:** `exhibition_wrapper.rpx` (install-only stub; Kiosk Menu does not launch it for playback)
+- **RPX:** `exhibition_wrapper.rpx` 
 - **User files:** `meta/TV00.mp4` … and `meta/DRC00.mp4` … (paired, equal count)
 
-This is **not** Attract Mode. Toggle under **Kiosk Settings → Set Menu Options → Exhibition Mode**. You won't be able to play any games.
 
 ---
 
@@ -48,6 +47,8 @@ More context: [HowKioskMenuWorks.MD — Exhibition Mode](../HowKioskMenuWorks.MD
 
 ## Prepare your videos
 
+Make sure videos are formated with what the kiosk expects. The tool only renames them and copies over them. If you only plan on using few videos then you can rename them by hand.
+
 Use the helper script (clone the repo, or copy `prepare_videos.py` from **Exhibition Mode/tools/**):
 
 ```sh
@@ -69,6 +70,9 @@ python3 tools/prepare_videos.py \
 You usually want **different** encodes for TV (1920×1080) and GamePad (854×480).
 
 ### Encode examples
+
+* [ffmpeg](https://ffmpeg.org/download.html) for video.
+
 
 **TV clip:**
 
@@ -106,7 +110,7 @@ Or you can do this manually if needed. Just rename them to `TV00.mp4` / `DRC00.m
 2. Add paired `TVnn.mp4` / `DRCnn.mp4` files to `meta/` (see **Prepare your videos** above).
 3. FTP the folder to `mlc:/usr/title/00050000/1fa82700/`.
 4. On the kiosk: **Kiosk Settings → Set Menu Options → Exhibition Mode → On**.
-5. Reboot or restart Kiosk Menu.
+5. Reboot the Wii U.
 
 To compile yourself: [HowToBuild.MD](../HowToBuild.MD).
 
@@ -120,7 +124,7 @@ To compile yourself: [HowToBuild.MD](../HowToBuild.MD).
 | “Exhibition Mode is On” but no video | Title missing from MLC, or no `TVnn`/`DRCnn` files |
 | “Movies … not equal” | Mismatch in TV vs DRC file count |
 | “Invalid movie name” | Filename must be exactly `TV00.mp4` or `DRC00.mp4` style |
-| Black screen after names fixed | Re-encode with H.264 + AAC, `-movflags +faststart` |
+| Black screen after names fixed / one frame| Re-encode with H.264 + AAC, `-movflags +faststart` |
 
 Related:
 

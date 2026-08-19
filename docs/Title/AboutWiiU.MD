@@ -51,6 +51,9 @@ Use these exact filenames, wrong names mean a button may not find its clip.
 
 ## Encode video
 
+* [ffmpeg](https://ffmpeg.org/download.html) for video.
+
+
 - **1920×1080**, H.264 High@L4.0, AAC stereo 48 kHz, `.mp4` container
 
 Example (repeat for slots `00`–`05`):
@@ -75,7 +78,7 @@ ffmpeg -y -i "YourSource.mp4" `
 1. Download the latest release from [GitHub Releases](https://github.com/pumpk-bit/Wii-U-Kiosk-Homebrew/releases). Use the `1fa82000/` folder from **All-In-One**.
 2. Put `AboutWiiU00.mp4` … `AboutWiiU05.mp4` in `meta/` (not included in the release).
 3. FTP the folder to `mlc:/usr/title/00050000/1fa82000/`.
-4. Reboot or restart Kiosk Menu.
+4. Reboot the Wii U.
 
 To compile yourself: [HowToBuild.MD](../HowToBuild.MD).
 
@@ -86,7 +89,7 @@ To compile yourself: [HowToBuild.MD](../HowToBuild.MD).
 | Issue | Check |
 |-------|-------|
 | Button opens but no video plays | Missing or misnamed file (e.g. `AboutWiiU03.mp4`) |
-| Black screen during playback | Re-encode to kiosk-friendly H.264 + AAC |
+| Black screen during playback / one frame | Re-encode to kiosk-friendly H.264 + AAC |
 | Only some buttons work | Not all six files are present |
 | Bubble missing in Kiosk Menu | Title not installed on MLC |
 

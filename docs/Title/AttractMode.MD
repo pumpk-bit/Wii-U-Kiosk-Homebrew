@@ -24,7 +24,9 @@ AttractMode01.mp4
 AttractMode11.mp4
 ```
 
-Retail `MenuApp.rpx` scans for filenames starting with `AttractMode`, parses a two-digit index, and rotates with `GetNextAttractModeMovie`. You do **not** need 100 files — that is an internal table limit. Gaps in numbering are fine; only present files are played.
+Retail `MenuApp.rpx` scans for filenames starting with `AttractMode`, parses a two-digit index, and rotates with `GetNextAttractModeMovie`. 
+
+You do **not** need 100 files but it can support that internally.
 
 More context: [HowKioskMenuWorks.MD — Movies and attract mode](../HowKioskMenuWorks.MD#movies-and-attract-mode).
 
@@ -50,6 +52,9 @@ More context: [HowKioskMenuWorks.MD — Movies and attract mode](../HowKioskMenu
 
 ## Encode video
 
+* [ffmpeg](https://ffmpeg.org/download.html) for video.
+
+
 Use the same settings as other kiosk helper videos:
 
 ```powershell
@@ -65,7 +70,7 @@ ffmpeg -y -i "YourSource.mp4" `
   "AttractMode00.mp4"
 ```
 
-Re-encode every clip you plan to use. Attract videos are usually silent; audio may still work.
+Re-encode every clip you plan to use. Attract videos are usually silent. Audio may still work.
 
 ---
 
@@ -74,7 +79,7 @@ Re-encode every clip you plan to use. Attract videos are usually silent; audio m
 1. Download the latest release from [GitHub Releases](https://github.com/pumpk-bit/Wii-U-Kiosk-Homebrew/releases). Use the `1fa82100/` folder from **All-In-One**.
 2. Put `AttractMode00.mp4` … `AttractMode11.mp4` in `meta/` (not included in the release).
 3. FTP the folder to `mlc:/usr/title/00050000/1fa82100/`.
-4. Reboot or restart Kiosk Menu.
+4. Reboot the Wii U.
 
 To compile yourself: [HowToBuild.MD](../HowToBuild.MD). 
 
@@ -84,10 +89,9 @@ To compile yourself: [HowToBuild.MD](../HowToBuild.MD).
 
 | Issue | Check |
 |-------|-------|
-| Attract mode never starts | Kiosk Menu settings may disable attract mode |
 | Attract starts but no movie plays | Missing or misnamed `AttractModeXX.mp4` files |
 | Some clips work, some do not | Wrong numbering or bad encode on certain files |
-| Black screen | Re-encode with H.264 + AAC |
+| Black screen/One frame | Re-encode with H.264 + AAC |
 
 Related:
 
